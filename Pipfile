@@ -9,6 +9,7 @@ djangorestframework = "*"
 python-dotenv = "*"
 pytest = "*"
 pytest-django = "*"
+flake8 = "*"
 
 [dev-packages]
 
