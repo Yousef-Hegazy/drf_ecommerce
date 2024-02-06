@@ -5,3 +5,7 @@ venv/
 db.sqlite3
 .coverage
 .vscode
+schema.yaml
+htmlcov/
+.idea/
+Pipfile.lock
