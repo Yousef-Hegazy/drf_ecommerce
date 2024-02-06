@@ -21,14 +21,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
 
 # Application definition
 
@@ -41,7 +39,9 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # External Packages
     "rest_framework",
+    "drf_spectacular",
     # Local Apps
+    "drf_ecommerce.product",
 ]
 
 MIDDLEWARE = [
@@ -74,7 +74,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "drf_ecommerce.wsgi.application"
 
-
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
@@ -90,7 +89,6 @@ CommonPasswordValidator = (
 NumericPasswordValidator = (
     "django.contrib.auth.password_validation.NumericPasswordValidator"
 )
-
 
 # Use the variables in your list
 AUTH_PASSWORD_VALIDATORS = [
@@ -108,7 +106,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
@@ -120,7 +117,6 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
@@ -131,5 +127,19 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
 
-REST_FRAMEWORK = ()
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'DRF E-Commerce API',
+    'DESCRIPTION': 'A simple API for e-commerce',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+    'CONTACT': {'name': 'Yousef', 'email': 'Yousefashraf14725@gmail.com'},
+    'COMPONENT_SPLIT_PATCH': True,
+    'COMPONENT_SPLIT_REQUEST': True,
+    'SWAGGER_UI_SETTINGS': {
+        'deepLinking': True,
+    },
+}
